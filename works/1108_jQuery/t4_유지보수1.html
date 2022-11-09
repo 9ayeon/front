@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 방식 window.onload</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script> //위 스크립트링크들은 cdn방식, 라이브러리연결해서 웹사용. 
+  // 스크립트를 위에서 생성한 것과 아래에서 생성한 것의 차이 :
+          // 온로드명령어에 의해서 먼저, 밑의 폼이 실행되기 전에 먼저 로드
+    'use strict';
+    //유지보수 시에는 기존걸 거의 손대지않음
+
+    // 셀렉터:[전체셀렉터,태그셀렉터,아이디셀렉터,클래스셀렉터,]자식,자손,동등 //아래 셀렉터가 사용되지않을경우 큰따옴표사용X
+    // jQuery => $
+    // 사용법 : $("셀렉터(선택자)").이벤트(스타일,기능(버튼클릭-동작(익명함수사용)(function(){기능의내용}); 
+    
+    $(document).ready(function(){ //본문로드.
+      // $("#demo").css("color",'red'); //본문 안의 데모로드, css사용법,css괄호안에 큰따옴표 작따옴표 상관없음
+      // $("#demo").css("fontSize","20pt"); //css버전에따라 사용법이 다름. 카멜표기법 우선시.하이픈지우고 하이픈뒷글자 대문자로변환(font-size=fontSize)
+      // 위의 데모css 한줄로 사용하기, 중괄호사용, 두개이상사용할땐 짝에맞게 콜론사용, 다음명령은 쉼표사용후
+      $("#demo").css({"color":'red',"fontSize":"20pt"});
+
+      $("#totalBtn").click(function(){
+        let cost = $("#cost").val(); // val=value,코스트의 값을 코스트에 가져온다
+        let su = $("#su").val(); //기본적인셀렉터:태그셀렉터, 아무것도 없이 쓰면 태그셀렉터로 취급. 아이디셀렉터는 #을 붙여야한다.
+        //버튼안쪽에 let변수선언 넣어주는 이유: 버튼을 눌러서 값을 받아와서 실행해야하기때문.(위에 넣으면 0이 나옴)
+        if(isNaN(cost) || isNaN(su)){ //isNan ~아니면 /수가아니면
+          alert("숫자만 입력하세요.");
+          $("#cost").select();
+          $("#cost").focus();
+          // cost.select();
+          // cost.focus();
+          return false;
+        }
+        let res = cost * su;
+          demo.innerHTML = res;
+      
+      });//도큐먼트(문서)레디(준비)펑션(기능준비) _ 온로드 , 위치가어디든간에 바디를먼저수행?여튼 먼저로드
+    });
+
+    // 이곳에 새로운 유지보수 내역을 기록(날짜와 함께) //css는 나중에 써진게 오버라이드되어 기존에 선언한것을 무시하고 덮어씌운다.(위에 써진 컬러레드는 실행이 안되고 아래에 적용한 블루가 실행이 됨.)
+    $(document).ready(function(){
+      $("#demo").css({"color":"blue","fontSize":"30pt"});
+
+
+    });
+
+  </script>
+  <style> 
+  /* css방식 스타일
+    #demo {
+      color: red;
+      font-size: 20pt;
+    } */
+  </style>
+</head>
+<body>
+<p><br/></p>
+<div class="container">
+  <h2>상품가격 계산</h2>
+  <form name="myform">
+    <div>
+      상품가격
+      <input type="text" name="cost" id="cost" autofocus class="form-control"/>
+    </div>
+    <div>
+      수량
+      <input type="number" name="su" id="su" class="form-control mb-3"/>
+    </div>
+    <div>
+      <input type="button" value="계산" id="totalBtn" class="btn btn-success" />
+    </div>
+  </form>
+  <hr/>
+  <div id="demo"></div>
+</div>
+<p><br/></p>
+</body>
+</html>

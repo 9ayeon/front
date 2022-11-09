@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전체 선택 / 전체 취소 / 선택 반전</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    'use strict';
+
+    function cCheck(season) { 
+      if(season.checked) { // 체크한게 넘어가고, 체크해제한게 
+        demo.innerHTML = "<font color='red'><b>"+ season.value + "</b></font> 을 <font color='blue'>선택</font>하셨습니다." //선택한(체크한) 값이 넘어온다.
+      }
+      else { //선택하지않았을때
+        demo.innerHTML = "<font color='red'><b>"+ season.value + "</b></font> 을 <font color='blue'>취소</font>하셨습니다." //선택한(체크한) 값이 넘어온다.
+      }
+    }
+
+    // 선택된 객체값 출력하기
+    function fCheck() {
+      let strSeason = ""; //값을 누적할것. (봄, 가을을 두가지 선택하면 봄 가을 true,누적)
+      let seasonLen = myform.season.length; // 폼안의 시즌의 길이=4
+      for(let i=0; i<seasonLen; i++) {
+        if(myform.season[i].checked) {
+          strSeason += myform.season[i].value + "/"; // '/'는 중간구분자용도. strSeason에 마이폼시즌 i의 값 누적
+        }
+      }
+      strSeason = strSeason.substring(0, strSeason.length-1);
+      demo.innerHTML = "<font color='red'><b>"+ strSeason + "</b></font> 을 <font color='blue'>선택</font>하셨습니다." //선택한(체크한) 값이 넘어온다.
+    }
+
+    // 전체 선택하기
+    function allCheck() {
+      let seasonLen = myform.season.length; // 폼안의 시즌의 길이=4
+      for(let i=0; i<seasonLen; i++) {
+        myform.season[i].checked = true; // true=선택
+      }
+    }
+
+    // 전체 선택취소하기
+    function allReset() {
+      let seasonLen = myform.season.length; // 폼안의 시즌의 길이=4
+      for(let i=0; i<seasonLen; i++) {
+        myform.season[i].checked = false; // false=취소
+      }
+    }
+    
+    // 전체 선택/취소 반전하기
+    function allReverse() {
+      let seasonLen = myform.season.length; // 폼안의 시즌의 길이=4
+      for(let i=0; i<seasonLen; i++) {
+        if(myform.season[i].checked) { //참(선택)일 경우, 거짓으로 반전.(선택해제)
+          myform.season[i].checked = false;
+        }
+        else {
+          myform.season[i].checked = true; //거짓(선택해제)일 경우, 참으로 반전(선택)
+        }
+      }
+    }
+    function allReverse2() {
+      let seasonLen = myform.season.length; // 폼안의 시즌의 길이=4
+      for(let i=0; i<seasonLen; i++) {
+        myform.season[i].checked = !myform.season[i].checked //체크를 역으로 하라. 체크가 되있지않은것을 체크로 바꿈.
+      }
+    }
+  
+  </script>
+</head>
+<body>
+<p><br/></p>
+<div class="container">
+  <h2>좋아하는 계절은?</h2>
+  <br/>
+  <form name="myform">
+    <p>
+      <!-- this = 자신의 모든 속성을 넘긴다는 예약어 -->
+      <input type="checkbox" name="season" value="봄" onclick="cCheck(this)"/>&nbsp;봄 &nbsp;
+      <input type="checkbox" name="season" value="여름" onclick="cCheck(this)"/>&nbsp;여름 &nbsp;
+      <input type="checkbox" name="season" value="가을" onclick="cCheck(this)"/>&nbsp;가을 &nbsp;
+      <input type="checkbox" name="season" value="겨울" onclick="cCheck(this)"/>&nbsp;겨울
+    </p>
+    <hr/>
+    <p>
+      <input type="button" value="선택" onclick="fCheck()" class="btn btn-success" />
+      <input type="button" value="전체선택" onclick="allCheck()" class="btn btn-primary" />
+      <input type="button" value="전체취소" onclick="allReset()" class="btn btn-danger" />
+      <input type="button" value="선택반전" onclick="allReverse()" class="btn btn-warning" />
+      <input type="button" value="선택반전" onclick="allReverse2()" class="btn btn-warning" />
+      <input type="reset" value="취소" class="btn btn-secondary" />
+    </p>
+  </form>
+  <hr/>
+  <div id="demo"></div>
+</div>
+<p><br/></p>
+</body>
+</html>

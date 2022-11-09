@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 폼</title>
+  <script src ="test8.js"></script>
+  <style>
+    fieldset {
+      background-color: rgb(217, 207, 247);
+    }
+  </style>
+</head>
+<body>
+  <center>
+  <h2><font color="#60F">회원가입</font></h2>
+  <form name="myform">
+  <fieldset style="width: 350px; height: 400px">
+    <legend align="right">!필수입력</legend>
+    <div><font color="#60F"><p><b>아이디</b></p></font>
+      <input type="text" name="mid" id="mid" size="16" placeholder="아이디를 입력하세요." autofoucs required />
+      <input type="button" value="확인" onclick="regexCheck()" />
+    </div>
+    <hr/>
+    <div><p><b>성명</b></p>
+      <input type="text" name="name" id="name" maxlength="4" size="16"  placeholder="이름을 입력하세요."/>
+      <input type="button" value="확인" onclick="regexCheck()" />
+    </div>
+    <hr/>
+    <div><p><b>전화번호</b></p>
+      <input type="text" name="number" id="number1" size="16"  maxlength="11" placeholder="번호를 입력하세요."/>
+      <input type="button" value="확인" onclick="regexCheck()" />
+    </div>
+    <hr/>
+    <div><p><b>메일주소</b></p>
+      <input type="mail" name="mail" id="mail" size="16"  placeholder="메일을 입력하세요."/>
+      <input type="button" value="확인" onclick="regexCheck()" />
+    </div>
+    <hr/>
+    <br/>
+    <div align="center"><input type="button" value="회원가입" xxonclick="regexCheck()"/></div>
+</fieldset></center>
+</body>
+</html>

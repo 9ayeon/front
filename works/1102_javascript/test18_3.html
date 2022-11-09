@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test18_3.html</title>
+  <script>
+    'use strict';
+
+    function fCheck() {
+      let gender;
+        if(document.getElementsByName("gender")[0].checked) gender = "남자밸류";
+        if(document.getElementsByName("gender")[1].checked) gender = "여자밸류";
+
+      // demo.innerText = gender;
+      if(gender == '남자밸류') {
+        demo.innerHTML = "<font color='skyblue'><b>"+gender+"</b></font>";
+      }
+      else {
+        demo.innerHTML = "<font color='gold'><b>"+gender+"</b></font>";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h2>라디오 버튼값 체크하기</h2>
+  <form name="myform">
+    <div>
+      <input type="radio" name="gender" id="gender1" value="남자밸류" checked/>남자
+      <input type="radio" name="gender" id="gender2" value="여자밸류"/>여자
+      <input type="button" value="값체크" onclick="fCheck()"/>
+    </div>
+  </form>
+  <hr/>
+  <div id="demo"></div>
+</body>
+</html>

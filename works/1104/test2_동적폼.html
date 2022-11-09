@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동적폼</title>
+  <script>
+    'use strict';
+    let newText = "";
+    let idx = 0;
+
+    // 1. 입력폼 1개 추가하기
+    // function inputBox() {
+    //   let newText = '<input type="text" name="product" id="product" />'; //바깥쪽이 큰따옴표면 안쪽이 작은따옴표, 바깥족이 작은이며 안쪽지 큰따옴표
+    //   demo.innerHTML = newText;
+    // }
+
+    // // 2.클릭할때마다 입력폼 추가하기
+    // function inputBox() {
+    //   newText += '<input type="text" name="product" id="product" /><br/>'; //바깥쪽이 큰따옴표면 안쪽이 작은따옴표, 바깥족이 작은이며 안쪽지 큰따옴표
+    //   demo.innerHTML = newText;
+    // }
+    
+    // // 3.클릭할때마다 입력폼 추가하기(지우기버튼추가)
+    // function inputBox() {
+    //   idx++;
+    //   newText += idx + '.<input type="text" name="product" id="product" /> &nbsp;'; //바깥쪽이 큰따옴표면 안쪽이 작은따옴표, 바깥족이 작은이며 안쪽지 큰따옴표
+    //   newText += "<input type='button' value='"+idx+"'.삭제' onclick='deleteBox()' /><br/>";
+    //   demo.innerHTML = newText;
+    // }
+
+    // 4.클릭할때마다 입력폼 추가하기(지우기버튼추가): 각 TextField마다 고유햔 id를 지정한다.
+    function inputBox() {
+      idx++;
+      newText += '<div id="proTxt'+idx+'">';
+        newText += idx + '.<input type="text" name="product" id="product'+idx+'" /> &nbsp;'; //바깥쪽이 큰따옴표면 안쪽이 작은따옴표, 바깥족이 작은이며 안쪽지 큰따옴표
+        newText += "<input type='button' value='"+idx+".삭제' onclick='deleteBox("+idx+")' /><br/>";
+        newText += '</div>';
+      demo.innerHTML = newText;
+    }
+
+    // 삭제버튼 클릭시 동적텍스트박스 삭제하기
+    function deleteBox(idx) {
+      let proTxt = "proTxt" + idx;
+      let item = document.getElementById(proTxt);
+      item.parentNode.removeChild(item);
+    }
+
+    function reloadCheck() {
+      idx = "";
+      location.reload()
+    }
+  </script>
+</head>
+<body>
+  <h2>입력창 추가(동적폼)</h2>
+  <form name="myform">
+    <p>
+      <input type="button" value="입력창추가" onclick="inputBox()" /> <!--location.href 이동시키는거-->
+      <input type="button" value="입력창모두제거" onclick="reloadCheck()" /> <!--새로고침-->
+    </p>
+    <div id="demo"></div>
+  </form>
+</body>
+</html>

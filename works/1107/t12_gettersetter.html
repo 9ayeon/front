@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바식 Class(객체) getters/setters사용예제</title>
+  <!-- 실제 변수값에 접근을 못하게 만들었으므로 필요한 걸 읽어오거나 저장하고 사용해서 접근,
+        읽어낼 때 게터를 이용하면 다른 이름으로 읽어낼 수 있음.
+        음수 값을 저장하지 못하게 만들 수 있음. 유효성검사.-->
+  <script>
+    'use strict';
+
+    // 클래스 만들기
+    class Member {
+      // 필드명 (getter와 setter을 통한 값의 처리때는 필드를 선언하지 않는다.)
+      // name;
+      // age;
+
+      // 생성자
+      constructor(name, age, color) {
+        this.name = name; //따로 선언하지않아도 생성자에 선언하면 필드명에 선언과 같음
+        this.age = age; // setter를 통해 사용가능
+        this.color = color;
+      }
+
+      // getters 생성
+      get name() {
+        return this._name; // _name = _ = 필드에 있는 것을 불러와라
+      }
+      get age() {
+        return this._age; //값을 되돌려준다.
+      }
+      get color() {
+        return this._color;
+      }
+
+      set name(name) {
+        this._name = name;
+      }
+      set age(age) {
+        // this._age = age;
+        // 음수를 양수로 ,삼항연산자 사용 1 아래 값이 들어오면 
+        this._age = (age < 1) ? age * (-1) : age;
+      }
+      set color(color) {
+        if(color == "껌정" || color == "블랙" || color == "흑색" || color == "까망" || color == "깜정") {
+          this._color = "검정";
+        }
+        else {
+          this._color = color;
+        }
+      }
+    }
+
+    let member = new Member("홍길동",25,"빨강");
+    console.log("성명: " + member.name);
+    console.log("나이: " + member.age);
+    console.log("선호색상: " + member.color);
+    let member2 = new Member("김말숙",-25,"깜정");
+    console.log("성명: " + member2.name);
+    console.log("나이: " + member2.age);
+    console.log("선호색상: " + member2.color);
+
+  </script>
+</head>
+<body>
+<p><br/></p>
+  <h2>클래스 연습(getters/setters)</h2>
+  <hr/>
+<p><br/></p>
+</body>
+</html>

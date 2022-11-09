@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예제</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    'use strict';
+    //셀렉트로 지정한 것을 변수에 담을거다?
+    $(function(){
+      let atom = $('.test').css('color','orange'); //아톰변수로 받았다.
+      console.log(atom); //같은 그룹 배열객체로 처리됨, 포문 사용가능
+
+      // 배열객체로 설정된 항목의 색인값으로 자료를 제어해보자.
+      // 배열로 꺼낸 항목을 자바스크립트로 사용한 예
+      let first = atom[0];
+      console.log(first);
+      //변수에 스타일 지정, 0번째 값만 레드로 변경
+      first.style.color = 'red'; //자바스크립트명령을 하기위해서는 제이쿼리는 속성 배열로 꺼낼수있따 위처럼 배열을 변수에 담는다
+    
+      // 배열로 꺼낸 항목을 jQuery로 사용한 예
+      let second = atom[1];
+      console.log(second);
+      $(second).css('color','blue');//셀렉터가 아닌 변수니까 달러 괄호 안에서 따옴표없이사용
+      console.clear();
+
+      // 넘겨주는 값을 매개변수로 처리해서 
+      // 반복문(순환) 처리 / each, map (제이쿼리에서는 축약해 forEach->each, 앞뒤도 변경되어서 인덱스가 먼저, 뒤가 요소)
+      atom.each(function(i, item){   // 객체명.each(매개변수(인덱스, 요소){}); 요소-item?왜??
+        console.log(item);
+        $(item).css('backgroundColor','pink');
+      });
+    });
+  </script>
+</head>
+<body>
+<p><br/></p>
+<div class="container"> <!--css에서는 id여러개가능? 클래스로하는건 원래 ㄱㅊ-->
+  <h2>진달래꽃</h2>
+  <p>작가 : 김소월</p>
+  <div id="a">1연</div>
+  <div>나보기가 <span class="test">역겨워</span> 가실 때에는</div>
+  <div>말없이 고이 보내드리오리다</div>
+  <div id="a">2연</div>
+  <div>영변에 약산 진달래꽃</div>
+  <div class="test2 main">아름따다 <h4>가실 길에 </h4>뿌리오리다</div> <!--class중복가능이니까 테스트2와 아래의메인을 같이 갖고있다-->
+  <div id="a">3연</div>
+  <div id="b">가시는 걸음걸음 놓인 그 꽃을</div>
+  <div>사뿐히 <span class="test">즈려밟고</span> 가시옵소서</div>
+  <div id="a">4연</div>
+  <div>나보기가 <span class="main">역겨워</span> 가실 때에는</div>
+  <div><span id="a">죽어도</span> <span class="test">아니눈물</span> 흘리오리다.</div>
+  <div>The End</div>
+  <!-- 태그명{내용}*반복할수 : div{연}*4 p{야옹}*5-->
+  <hr/>
+  <div id="demo"></div>
+</div>
+<p><br/></p>
+</body>
+</html>

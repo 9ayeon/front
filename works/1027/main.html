@@ -1,0 +1,19 @@
+<html>
+  <head> <!-- 메인에는 바디가 필요X  아래 프레임셋 rows=20,80 = 위행20 아래행80크기-->
+    <!-- <frameset rows="20%,80%"> -->
+    <!-- <frameset cols="20%,80%"> -->
+    <!-- <frameset cols="150px,*"> -->
+    <!-- frameborder : 프레임사이의 경계선표시여부(1:표시,0:해제)
+          scrolling : auto/yes/no
+     -->
+    <frameset rows="150px,*,100px" border="0px" frameborder="1" framespacing="0px"> <!-- * = 나머지 / 안에 넣는 픽셀로 행나눔-->
+      <frame src="a.html" noresize scrolling="yes" marginheight="10px" marginwidth="0px">
+      <frameset cols="180px,*,100px"> <!-- 열나눔-->
+        <frame src="b.html" noresize> 
+        <frame src="c.html">
+        <frame src="e.html">
+      </frameset>
+      <frame src="d.html">
+    </frameset>
+  </head>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>selector연습</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>// 자바스크립트와 css는 다르다, jQuery는 자바스크립트
+    'use strict';
+
+    // 선택자 연습
+    $(document).ready(function(){
+      // 전체 선택자(*)
+      $('*').css('color','gray');
+
+      // 태그 선택자
+      $('h2').css('backgroundColor','blue');
+
+      // 아이디 선택자 , 자바스크립트와 동일. 아래 먼저 선언한 1연에만 적용됨. 맨위선언한것 하나만..이거공부해
+      // 직접 아이디를 선택하면 하나만 되었지만, 아래 조합선택자를 사용하면 모두 그룹화되어 적용된다
+      $('#a').css('fontSize','20pt');
+
+      // 클래스 선택자
+      $('.test').css('backgroundColor','#f0f');
+      $('.test3').css('fontSize','25pt');
+
+      // 조합 선택자 (섞어서쓰는)
+      //a는 div,span에도 붙어있다
+      $('div#a').css('color','orange');
+      $('span#a').css('color','brown');
+      $('span#a').css('backgroundColor','yellow'); //폰트스타일(속성),폰트패밀리(글꼴)
+      
+      // 포함 선택자 (태그포함)(자손?)
+      // 자손 선택자 자손은 띄어쓰고 자기는 붙여씀
+      $('div h2').css('fontStyle','italic'); //폰트스타일(속성),폰트패밀리(글꼴)
+      $('div .main').css('fontFamily','궁서체'); //폰트스타일(속성),폰트패밀리(글꼴)
+    
+      //묶음 선택자
+      $('#a, #b, h4, .main').css('textDecoration','underline');
+    });
+  </script>
+  <style>
+    /* #a {font-size: 20pt} */
+  </style>
+</head>
+<body>
+<p><br/></p>
+<div class="container"> <!--css에서는 id여러개가능? 클래스로하는건 원래 ㄱㅊ-->
+  <h2>진달래꽃</h2>
+  <p>작가 : 김소월</p>
+  <div id="a">1연</div>
+  <div>나보기가 <span class="test">역겨워</span> 가실 때에는</div>
+  <div>말없이 고이 보내드리오리다</div>
+  <div id="a">2연</div>
+  <div>영변에 약산 진달래꽃</div>
+  <div class="test2 main">아름따다 <h4>가실 길에</h4> 뿌리오리다</div> <!--class중복가능이니까 테스트2와 아래의메인을 같이 갖고있다-->
+  <div id="a">3연</div>
+  <div id="b">가시는 걸음걸음 놓인 그 꽃을</div>
+  <div>사뿐히 <span class="test">즈려밟고</span> 가시옵소서</div>
+  <div id="a">4연</div>
+  <div>나보기가 <span class="main">역겨워</span> 가실 때에는</div>
+  <div><span id="a">죽어도</span> <span class="test test3">아니눈물</span> 흘리오리다.</div> <!--아니눈물은 클래스 2개 테스트2,테스트3-->
+  <div>The End</div>
+  <!-- 태그명{내용}*반복할수 : div{연}*4 p{야옹}*5-->
+  <hr/>
+  <div id="demo"></div>
+</div>
+<p><br/></p>
+</body>
+</html>

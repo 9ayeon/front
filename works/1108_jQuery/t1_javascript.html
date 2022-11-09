@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자바스크립트 방식 window.onload</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script> //위 스크립트링크들은 cdn방식, 라이브러리연결해서 웹사용. 
+  // 스크립트를 위에서 생성한 것과 아래에서 생성한 것의 차이 :
+          // 온로드명령어에 의해서 먼저, 밑의 폼이 실행되기 전에 먼저 로드
+    'use strict';
+
+    window.onload = function() {
+      let costVar = document.getElementById("cost"); //1*여기서 밸류를 사용하지 않고
+      let suVar = document.getElementById("su");
+      let demo = document.getElementById("demo");
+      let totalBtn = document.getElementById("totalBtn"); //jQuery사용 이전에 사용법
+
+      totalBtn.addEventListener('click',function() {
+        let cost = Number(costVar.value); //number 클래스개념 number(정수화,예전에사용함),parseInt차이점 parseInt-정수화 //2*여기서 사용함. 이유:아래에서 셀렉트,포커스도 써야하니까 변수지정만 함. 물고물고 들어가는-체이닝기법? 제이쿼리사용
+        let su = Number(suVar.value);
+        if(isNaN(cost) || isNaN(su)){ //isNan ~아니면 /수가아니면
+          alert("숫자만 입력하세요.");
+          costVar.select();
+          costVar.focus();
+          return false;
+        }
+
+        let res = cost * su;
+        demo.innerHTML = res;
+      }) //토탈버튼에 이벤트가 발생되면 처리,이벤트감지 / 익명함수 사용,어느 동작을 읽을 때 사용하는지('click')/계산하기 위해 값을 읽어와야 한다 컨테이너 내(윈도우)에 있는 것들을 한번 싹 읽어와야함(온로드이벤트)
+
+    } //윈도우객체는 변수적용반대/ 윈도우에 있는걸 모두 읽어와야 하기때문에 토탈버튼줄을 윈도우온로드 안에 넣어줌
+
+
+  </script>
+</head>
+<body>
+<p><br/></p>
+<div class="container">
+  <h2>상품가격 계산</h2>
+  <form name="myform">
+    <div>
+      상품가격
+      <input type="text" name="cost" id="cost" autofocus class="form-control"/>
+    </div>
+    <div>
+      수량
+      <input type="number" name="su" id="su" class="form-control mb-3"/>
+    </div>
+    <div>
+      <input type="button" value="계산" id="totalBtn" class="btn btn-success" />
+    </div>
+  </form>
+  <hr/>
+  <div id="demo"></div>
+</div>
+<p><br/></p>
+</body>
+</html>
