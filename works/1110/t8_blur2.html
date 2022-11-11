@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blur</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    'use strict';
+    $(function(){
+      $('#txtName').mouseover(function(){ //마우스커서를 위에 올리면 다음항목에 색이 변하고(데모칸)
+        $(this).next().next().css("backgroundColor","orange");
+      });
+      $('#txtName').focus(function(){ //탭키나, 마우스로 텍스트칸에 진입하면 다음다음항목 데모칸에 색이들어오고
+        $(this).next().next().css("backgroundColor","orange"); // 넥스트 두번써서 다음다음항목ㅋㅋ 버튼다음에 데모칸
+      });
+      $('#txtName').blur(function(){ //포커스가 벗어나면 다시 다음다음항목이 하얘진다
+        $(this).next().next().css("backgroundColor","white");
+      });
+    });
+  </script>
+  <style>
+
+  </style>
+</head>
+<body>
+<p><br/></p>
+<div class="container">
+  <h2>focus와 blur 이벤트 처리</h2>
+  <form name="myform">
+    <div>
+      성명 : <input type="text" name="name" id="txtName" class="form-control" />
+      <input type="button" value="클릭" id="btn1" class="btn btn-warning form-control m-3" /> 
+      <div id="demo">내용이 없습니다.</div>
+    </div>
+    <hr/>
+  </form>
+</div>
+<p><br/></p>
+</body>
+</html>
